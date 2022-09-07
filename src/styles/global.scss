@@ -21,7 +21,11 @@ html, body, #root{
 }
 
 body{
-  background: #0D2636;
+  background: linear-gradient(
+    180deg,
+    #ff0000,
+    #000
+  );
   font-size: 14px;
   -webkit-font-smoothing: antialiased !important
 }
