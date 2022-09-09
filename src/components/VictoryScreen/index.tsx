@@ -20,26 +20,25 @@ function VictoryScreen() {
   }, []);
   return (
     <div className={styles.container}>
-      <h2>
+      <h2 className={styles.results}>
         {time !== null && time.tempoAtual <= time.melhorTempo
           ? 'Parabéns!!!!'
           : `Tempo: + ${
               time !== null && secondsToTime(time.tempoAtual - time.melhorTempo)
             }`}
       </h2>
-      <p className={styles.results}>{`Melhor tempo: ${
+      <h2 className={styles.results}>{`Melhor tempo: ${
         time !== null && secondsToTime(time.melhorTempo)
-      }`}</p>
-      <p className={styles.results}>{`Tempo atual: ${
+      }`}</h2>
+      <h2 className={styles.results}>{`Tempo atual: ${
         time !== null && secondsToTime(time.tempoAtual)
-      }`}</p>
-      <button
-        type="button"
+      }`}</h2>
+      <input
+        type="submit"
+        value="Jogar Novamente"
         className={styles.jogar}
         onClick={() => navigate(0)}
-      >
-        Jogar Novamente
-      </button>
+      />
     </div>
   );
 }
