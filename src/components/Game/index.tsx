@@ -139,7 +139,7 @@ function Game() {
     <div className={styles.container}>
       {screenHeader && (
         <header className={styles.header}>
-          <h1>Escolha a cor</h1>
+          <h1>Reflex Test Game</h1>
           <section className={styles.headerOptionCor}>
             <label htmlFor="backgroundColor">
               Cor do fundo
