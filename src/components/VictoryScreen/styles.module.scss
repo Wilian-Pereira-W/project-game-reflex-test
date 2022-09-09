@@ -1,70 +1,44 @@
 .container {
   display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
-
-  h2 {
-    color: #FFF;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 45px;
-    margin-top: 60px;
-  }
-
-  .results {
-    color: #FFF;
-  }
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  height: 370px;
+  background-color: #FFF;
+  margin-top: 90px;
+  border: 3px solid #000;
+  border-radius: 8px;
 
   .jogar {
     width: 300px;
     height: 60px;
     color: #FFF;
-    background: #000;
     border-radius: 10px;
+    background-color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 70px;
+    margin-top: 30px;
     font-size: 25px;
   }
-
-  @media (min-width: 360px){
-    h2 {
-      font-size: 30px;
-    }
-
-    .results {
-      font-size: 30px;
-      margin: 15px;
-    }
+  .results {
+    color: #000;
+    font-size: 45px;
   }
+}
 
-  @media (min-width: 412px){
-    h2 {
-      margin-top: 150px;
-      font-size: 30px;
-    }
-
-    .results {
-      font-size: 30px;
-      margin: 15px;
-    }
-  }
-
-  @media (min-width: 480px){
-    h2 {
-      margin-top: 150px;
-      font-size: 30px;
-    }
+@media (min-width: 360px){
+  .container {
+    width: 350px;
 
     .results {
-      font-size: 30px;
-      margin: 15px;
+      font-size: 28px;
+      margin: 5px;
+    }
+
+    .jogar{
+      margin-top: 80px;
     }
   }
 }

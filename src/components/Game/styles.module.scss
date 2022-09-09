@@ -1,32 +1,66 @@
 .container {
   display: flex;
   justify-items: center;
-  justify-content: center;
-  justify-items: center;
   flex-direction: column;
+  height: 100vh;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  height: 150px;
 
-  p {
-    height: 30px;
-    margin: 0 auto;
-    margin-top: 50px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    font-size: 50px;
-    font-family: 'Times New Roman', Times, serif;
-    color: #FFF;
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    width: 250px;
+    height: 45px;
+    background-color: #FFF;
+    border: 2px solid #000;
+    border-radius: 8px;
+    font-size: 30px;
   }
+
 }
 
-.contain {
+.headerOptionCor {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 15px;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    background: #FFF;
+    width: 120px;
+    height: 50px;
+    border: 2px solid #000;
+    border-radius: 8px;
+
+    input {
+      margin-top: 5px;
+      border: 0;
+      width: 90px;
+    }
+  }
+}
+.containGame {
   display: grid;
   width: 100%;
-  margin-top: 50px;
-  height: 100%;
+  margin-top: 40px;
   justify-content: center;
   align-content: center;
   align-items: center;
   justify-items: center;
   grid-template-columns: repeat(4, auto);
+
 
   button {
     width: 100px;
@@ -48,11 +82,40 @@
 
   .newCor {
     background-color: blue;
-    box-shadow: 0 0 2px 2px rgba(15, 0, 225, 0.616);
+    box-shadow: 0 0 2px 2px rgba(15, 0, 0, 0.6);
   }
 }
 
+.containTime {
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    width: 250px;
+    height: 45px;
+    background-color: #FFF;
+    border: 2px solid #000;
+    border-radius: 8px;
+    font-size: 30px;
+    margin: 0 auto;
+  }
+}
+
+
 @media (min-width: 360px){
+  .headerOptionCor {
+    label {
+      margin: 5px 10px;
+      font-size: 12px;
+      width: 95px;
+      height: 55px;
+
+      input {
+        width: 75px;
+      }
+    }
+  }
   .contain {
     button {
       width: 70px;
@@ -63,21 +126,45 @@
 }
 
 @media (min-width: 412px){
+  .headerOptionCor {
+    label {
+      font-size: 14px;
+      width: 110px;
+      height: 55px;
+      margin: 5px 10px;
+
+      input {
+        width: 90px;
+      }
+    }
+  }
   .contain {
     button {
       width: 70px;
       height: 70px;
-      margin: 20px 10px;
+      margin: 10px 10px;
     }
   }
 }
 
 @media (min-width: 480px){
+  .headerOptionCor {
+    label {
+      font-size: 14px;
+      width: 120px;
+      height: 55px;
+      margin: 5px 10px;
+
+      input {
+        width: 90px;
+      }
+    }
+  }
   .contain {
     button {
       width: 80px;
       height: 80px;
-      margin: 20px 10px;
+      margin: 10px 10px;
     }
   }
 }
