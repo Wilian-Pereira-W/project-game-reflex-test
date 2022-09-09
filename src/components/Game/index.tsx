@@ -13,6 +13,10 @@ function Game() {
   const [mainTime, setMainTime] = useState<number>(0);
   const [isPlaying, setPlaying] = useState<boolean>(false);
   const [viewVictory, setViewVictory] = useState(true);
+  const [backgroundColor, setBackgroundColor] = useState('');
+  const [btnOneCor, setBtnOneCor] = useState('');
+  const [btnTwoCor, setBtnTwoCor] = useState('');
+  const [screenHeader, setScreenHeader] = useState(true);
   const navigate = useNavigate();
 
   useInterval(
@@ -21,6 +25,16 @@ function Game() {
     },
     isPlaying ? 10 : null,
   );
+
+  useEffect(() => {
+    const coresStorage: string | null = localStorage.getItem('cores');
+    if (coresStorage) {
+      const cores = JSON.parse(coresStorage);
+      setBackgroundColor(cores.backgroundColor);
+      setBtnOneCor(cores.btnOneCor);
+      setBtnTwoCor(cores.btnTwoCor);
+    }
+  }, []);
 
   useEffect(() => {
     const array: number[] = [];
@@ -37,6 +51,18 @@ function Game() {
       btn.className = styles.newCor;
     }
   }, [id]);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = backgroundColor;
+    const btn = document.querySelectorAll('button');
+    btn.forEach((element) => {
+      if (element.className.includes('newCor')) {
+        element.style.backgroundColor = btnOneCor;
+      } else {
+        element.style.backgroundColor = btnTwoCor;
+      }
+    });
+  }, [backgroundColor, btnOneCor, btnTwoCor, id]);
 
   const bestTime = (currentTime: number, oldTime: number) => {
     let data = {
@@ -77,6 +103,13 @@ function Game() {
         };
         localStorage.setItem('time', JSON.stringify(data));
       }
+      const dataCor = {
+        backgroundColor,
+        btnOneCor,
+        btnTwoCor,
+      };
+      localStorage.setItem('cores', JSON.stringify(dataCor));
+      setScreenHeader(false);
     }
   };
   const handleClick = (index: string) => {
@@ -93,26 +126,72 @@ function Game() {
       const numero = Math.floor(Math.random() * newOption.length);
       setId(newOption[numero]);
     } else {
+      const dataCor = {
+        backgroundColor,
+        btnOneCor,
+        btnTwoCor,
+      };
+      localStorage.setItem('cores', JSON.stringify(dataCor));
       navigate(0);
     }
   };
   return (
     <div className={styles.container}>
-      {viewVictory && <p>{secondsToTime(mainTime)}</p>}
+      {screenHeader && (
+        <header className={styles.header}>
+          <h1>Escolha a cor</h1>
+          <section className={styles.headerOptionCor}>
+            <label htmlFor="backgroundColor">
+              Cor do fundo
+              <input
+                type="color"
+                value={backgroundColor}
+                onChange={({ target }) => setBackgroundColor(target.value)}
+                name="backgroundColor"
+                id="backgroundColor"
+              />
+            </label>
+            <label htmlFor="backgroundColor">
+              Cor do botão 1
+              <input
+                type="color"
+                value={btnOneCor}
+                onChange={({ target }) => setBtnOneCor(target.value)}
+                name="backgroundColor"
+                id="backgroundColor"
+              />
+            </label>
+            <label htmlFor="backgroundColor">
+              Cor do botão 2
+              <input
+                type="color"
+                value={btnTwoCor}
+                onChange={({ target }) => setBtnTwoCor(target.value)}
+                name="backgroundColor"
+                id="backgroundColor"
+              />
+            </label>
+          </section>
+        </header>
+      )}
       <main className={styles.contain}>
-        {viewVictory ? (
-          array.map((_arr, index) => (
-            <button
-              type="button"
-              key={String(index)}
-              id={String(index)}
-              onClick={() => handleClick(String(index))}
-            ></button>
-          ))
-        ) : (
-          <VictoryScreen />
-        )}
-        ;
+        <section className={styles.containTime}>
+          {viewVictory && <h2>{secondsToTime(mainTime)}</h2>}
+        </section>
+        <section className={styles.containGame}>
+          {viewVictory ? (
+            array.map((_arr, index) => (
+              <button
+                type="button"
+                key={String(index)}
+                id={String(index)}
+                onClick={() => handleClick(String(index))}
+              ></button>
+            ))
+          ) : (
+            <VictoryScreen />
+          )}
+        </section>
       </main>
     </div>
   );
