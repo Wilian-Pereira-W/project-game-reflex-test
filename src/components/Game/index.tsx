@@ -4,6 +4,7 @@ import { useInterval } from '../../hooks/useInterval';
 import { secondsToTime } from '../../utils/formatTime';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Header';
 
 function Game() {
   const [array] = useState(new Array(16).fill('reflex'));
@@ -16,7 +17,6 @@ function Game() {
   const [backgroundColor, setBackgroundColor] = useState('');
   const [btnOneCor, setBtnOneCor] = useState('');
   const [btnTwoCor, setBtnTwoCor] = useState('');
-  const [screenHeader, setScreenHeader] = useState(true);
   const navigate = useNavigate();
 
   useInterval(
@@ -109,7 +109,6 @@ function Game() {
         btnTwoCor,
       };
       localStorage.setItem('cores', JSON.stringify(dataCor));
-      setScreenHeader(false);
     }
   };
   const handleClick = (index: string) => {
@@ -137,10 +136,10 @@ function Game() {
   };
   return (
     <div className={styles.container}>
-      {screenHeader && (
-        <header className={styles.header}>
-          <h1>Reflex Test Game</h1>
-          <section className={styles.headerOptionCor}>
+      <Header />
+      <main className={styles.contain}>
+        {viewVictory && (
+          <section className={styles.containOptionCor}>
             <label htmlFor="backgroundColor">
               Cor do fundo
               <input
@@ -172,9 +171,7 @@ function Game() {
               />
             </label>
           </section>
-        </header>
-      )}
-      <main className={styles.contain}>
+        )}
         <section className={styles.containTime}>
           {viewVictory && <h2>{secondsToTime(mainTime)}</h2>}
         </section>
